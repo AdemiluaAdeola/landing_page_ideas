@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TheWovenApp — Your Social World, Woven Together</title>
+
+    <meta
+        name="description"
+        content="TheWovenApp brings your social conversations, content and communities together in one intelligent platform."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        :root {
+            --bg: #070707;
+            --bg-soft: #101010;
+            --card: #121212;
+            --card-light: #181818;
+
+            --text: #ffffff;
+            --text-muted: #9d9d9d;
+
+            --primary: #ffffff;
+            --accent: #8b5cf6;
+            --accent-2: #c084fc;
+
+            --border: rgba(255,255,255,0.09);
+
+            --radius: 24px;
+            --max-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: "DM Sans", sans-serif;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(92%, var(--max-width));
+            margin: auto;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+
+            padding: 18px 0;
+
+            background: rgba(7,7,7,0.72);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .logo-mark {
+            width: 34px;
+            height: 34px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff,
+                    #8b5cf6
+                );
+
+            color: #000;
+            font-weight: 800;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #aaa;
+            font-size: 14px;
+            transition: .3s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-button {
+            padding: 11px 18px;
+            border-radius: 999px;
+
+            background: white;
+            color: black !important;
+
+            font-weight: 600;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+
+            padding: 150px 0 100px;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 650px;
+            height: 650px;
+
+            background: radial-gradient(
+                circle,
+                rgba(139,92,246,.22),
+                transparent 70%
+            );
+
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            pointer-events: none;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            margin: auto;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 8px 14px;
+
+            border: 1px solid var(--border);
+            border-radius: 999px;
+
+            background: rgba(255,255,255,.04);
+
+            color: #cfcfcf;
+
+            font-size: 13px;
+
+            margin-bottom: 28px;
+        }
+
+        .badge span {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+            background: #8b5cf6;
+
+            box-shadow: 0 0 15px #8b5cf6;
+        }
+
+        h1 {
+            font-family: "Space Grotesk", sans-serif;
+
+            font-size: clamp(
+                3.2rem,
+                8vw,
+                7rem
+            );
+
+            line-height: .95;
+
+            letter-spacing: -5px;
+
+            margin-bottom: 30px;
+        }
+
+        h1 .gradient {
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #a78bfa,
+                    #ffffff
+                );
+
+            background-size: 200% auto;
+
+            color: transparent;
+            background-clip: text;
+
+            animation: gradientMove 5s linear infinite;
+        }
+
+        @keyframes gradientMove {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        .hero-description {
+            max-width: 650px;
+            margin: auto;
+
+            color: var(--text-muted);
+
+            font-size: 18px;
+            line-height: 1.7;
+
+            margin-bottom: 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 25px;
+
+            border-radius: 999px;
+
+            font-weight: 600;
+
+            transition: .3s;
+        }
+
+        .btn-primary {
+            background: white;
+            color: black;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255,255,255,.15);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,.03);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,.08);
+        }
+
+        /* =========================
+           FLOATING SOCIAL CARDS
+        ========================= */
+
+        .hero-visual {
+            position: relative;
+
+            width: 100%;
+            max-width: 1000px;
+
+            height: 300px;
+
+            margin: 90px auto 0;
+        }
+
+        .floating-card {
+            position: absolute;
+
+            width: 250px;
+
+            padding: 20px;
+
+            background: rgba(20,20,20,.75);
+
+            backdrop-filter: blur(20px);
+
+            border: 1px solid var(--border);
+
+            border-radius: 20px;
+
+            box-shadow: 0 30px 80px rgba(0,0,0,.5);
+
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-card:nth-child(1) {
+            left: 5%;
+            top: 30px;
+        }
+
+        .floating-card:nth-child(2) {
+            left: 38%;
+            top: 0;
+            animation-delay: 1s;
+        }
+
+        .floating-card:nth-child(3) {
+            right: 5%;
+            top: 50px;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            margin-bottom: 15px;
+        }
+
+        .avatar {
+            width: 34px;
+            height: 34px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #8b5cf6,
+                    #ec4899
+                );
+        }
+
+        .card-name {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .card-text {
+            color: #aaa;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           FEATURES
+        ========================= */
+
+        section {
+            padding: 120px 0;
+        }
+
+        .section-heading {
+            max-width: 650px;
+            margin-bottom: 60px;
+        }
+
+        .eyebrow {
+            color: #a78bfa;
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-family: "Space Grotesk", sans-serif;
+
+            font-size: clamp(
+                2.3rem,
+                5vw,
+                4rem
+            );
+
+            line-height: 1;
+
+            letter-spacing: -2px;
+
+            margin-bottom: 20px;
+        }
+
+        .section-heading p {
+            color: var(--text-muted);
+
+            line-height: 1.7;
+        }
+
+        .features-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .feature {
+            padding: 30px;
+
+            min-height: 270px;
+
+            border: 1px solid var(--border);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #151515,
+                    #0d0d0d
+                );
+
+            border-radius: var(--radius);
+
+            transition: .35s;
+        }
+
+        .feature:hover {
+            transform: translateY(-8px);
+
+            border-color:
+                rgba(167,139,250,.35);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 15px;
+
+            background:
+                rgba(139,92,246,.12);
+
+            color: #a78bfa;
+
+            font-size: 22px;
+
+            margin-bottom: 30px;
+        }
+
+        .feature h3 {
+            font-family: "Space Grotesk";
+
+            font-size: 21px;
+
+            margin-bottom: 12px;
+        }
+
+        .feature p {
+            color: #8d8d8d;
+
+            line-height: 1.7;
+
+            font-size: 14px;
+        }
+
+        /* =========================
+           AI SECTION
+        ========================= */
+
+        .ai-section {
+            position: relative;
+        }
+
+        .ai-container {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 70px;
+
+            align-items: center;
+        }
+
+        .ai-copy p {
+            color: #999;
+
+            line-height: 1.8;
+
+            margin-bottom: 30px;
+        }
+
+        .ai-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .ai-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            color: #ddd;
+        }
+
+        .check {
+            width: 25px;
+            height: 25px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            background: rgba(139,92,246,.15);
+
+            color: #a78bfa;
+        }
+
+        .ai-dashboard {
+            min-height: 500px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 30px;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(139,92,246,.2),
+                    transparent 40%
+                ),
+                #101010;
+
+            padding: 25px;
+
+            box-shadow:
+                0 30px 100px rgba(0,0,0,.5);
+        }
+
+        .dashboard-top {
+            display: flex;
+            justify-content: space-between;
+
+            margin-bottom: 30px;
+        }
+
+        .dashboard-title {
+            font-family: "Space Grotesk";
+            font-size: 18px;
+        }
+
+        .dashboard-status {
+            color: #a78bfa;
+            font-size: 12px;
+        }
+
+        .chart {
+            height: 180px;
+
+            display: flex;
+            align-items: end;
+
+            gap: 10px;
+
+            padding: 20px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 20px;
+
+            background: rgba(255,255,255,.02);
+
+            margin-bottom: 20px;
+        }
+
+        .bar {
+            flex: 1;
+
+            border-radius: 8px 8px 2px 2px;
+
+            background:
+                linear-gradient(
+                    to top,
+                    #8b5cf6,
+                    #c084fc
+                );
+
+            opacity: .8;
+        }
+
+        .bar:nth-child(1) { height: 30%; }
+        .bar:nth-child(2) { height: 45%; }
+        .bar:nth-child(3) { height: 35%; }
+        .bar:nth-child(4) { height: 65%; }
+        .bar:nth-child(5) { height: 55%; }
+        .bar:nth-child(6) { height: 80%; }
+        .bar:nth-child(7) { height: 70%; }
+
+        .analytics-card {
+            padding: 20px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 12px;
+        }
+
+        .analytics-card span {
+            color: #888;
+            font-size: 13px;
+        }
+
+        .analytics-card strong {
+            font-size: 20px;
+        }
+
+        /* =========================
+           HOW IT WORKS
+        ========================= */
+
+        .steps {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .step {
+            position: relative;
+
+            padding: 35px;
+
+            border-top: 1px solid var(--border);
+        }
+
+        .step-number {
+            color: #a78bfa;
+
+            font-size: 13px;
+
+            margin-bottom: 30px;
+        }
+
+        .step h3 {
+            font-family: "Space Grotesk";
+
+            font-size: 24px;
+
+            margin-bottom: 15px;
+        }
+
+        .step p {
+            color: #888;
+
+            line-height: 1.7;
+        }
+
+        /* =========================
+           CTA
+        ========================= */
+
+        .cta {
+            padding: 120px 0;
+        }
+
+        .cta-box {
+            text-align: center;
+
+            padding: 100px 30px;
+
+            border-radius: 35px;
+
+            border: 1px solid var(--border);
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(139,92,246,.18),
+                    transparent 60%
+                ),
+                #111;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .cta-box h2 {
+            max-width: 750px;
+            margin: 0 auto 25px;
+        }
+
+        .cta-box p {
+            color: #999;
+
+            max-width: 550px;
+
+            margin: 0 auto 35px;
+
+            line-height: 1.7;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            border-top: 1px solid var(--border);
+
+            padding: 50px 0;
+
+            color: #777;
+        }
+
+        .footer-inner {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 25px;
+
+            font-size: 13px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media(max-width: 800px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            h1 {
+                letter-spacing: -3px;
+            }
+
+            .hero {
+                padding-top: 130px;
+            }
+
+            .hero-visual {
+                height: 450px;
+            }
+
+            .floating-card {
+                width: 210px;
+            }
+
+            .floating-card:nth-child(1) {
+                left: 0;
+                top: 40px;
+            }
+
+            .floating-card:nth-child(2) {
+                left: auto;
+                right: 0;
+                top: 150px;
+            }
+
+            .floating-card:nth-child(3) {
+                left: 15%;
+                right: auto;
+                top: 280px;
+            }
+
+            .features-grid,
+            .steps,
+            .ai-container {
+                grid-template-columns: 1fr;
+            }
+
+            .ai-dashboard {
+                min-height: auto;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+
+                gap: 25px;
+
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav>
+    <div class="container nav-inner">
+
+        <a href="#" class="logo">
+            <div class="logo-mark">W</div>
+            TheWovenApp
+        </a>
+
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#ai">AI</a>
+            <a href="#how">How it works</a>
+            <a href="#about">About</a>
+
+            <a href="#join" class="nav-button">
+                Get Started
+            </a>
+        </div>
+
+    </div>
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<header class="hero">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                <span></span>
+                The future of social interaction
+            </div>
+
+            <h1>
+                Your social world,
+                <span class="gradient">
+                    woven together.
+                </span>
+            </h1>
+
+            <p class="hero-description">
+                TheWovenApp brings your conversations, content,
+                communities and digital experiences together —
+                powered by intelligent technology built around you.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#join" class="btn btn-primary">
+                    Join TheWoven
+                </a>
+
+                <a href="#features" class="btn btn-secondary">
+                    Explore the platform →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+            <div class="floating-card">
+
+                <div class="card-header">
+                    <div class="avatar"></div>
+
+                    <div>
+                        <div class="card-name">
+                            Creative Hub
+                        </div>
+                    </div>
+                </div>
+
+                <p class="card-text">
+                    New content is trending in your community.
+                </p>
+
+            </div>
+
+
+            <div class="floating-card">
+
+                <div class="card-header">
+                    <div class="avatar"></div>
+
+                    <div>
+                        <div class="card-name">
+                            AI Assistant
+                        </div>
+                    </div>
+                </div>
+
+                <p class="card-text">
+                    "I've organized your conversations
+                    and highlighted the messages you missed."
+                </p>
+
+            </div>
+
+
+            <div class="floating-card">
+
+                <div class="card-header">
+                    <div class="avatar"></div>
+
+                    <div>
+                        <div class="card-name">
+                            Your Network
+                        </div>
+                    </div>
+                </div>
+
+                <p class="card-text">
+                    12 new conversations are waiting for you.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     FEATURES
+========================= -->
+
+<section id="features">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="eyebrow">
+                One ecosystem
+            </div>
+
+            <h2>
+                Everything social.
+                One place.
+            </h2>
+
+            <p>
+                TheWovenApp connects the different parts of
+                your digital life into a single intelligent
+                experience.
+            </p>
+
+        </div>
+
+
+        <div class="features-grid">
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    ✦
+                </div>
+
+                <h3>
+                    Intelligent Content
+                </h3>
+
+                <p>
+                    Create, organize and discover content
+                    that actually matters to you.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    ◉
+                </div>
+
+                <h3>
+                    Unified Messaging
+                </h3>
+
+                <p>
+                    Keep conversations organized and stay
+                    connected without constantly switching
+                    between platforms.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    ↗
+                </div>
+
+                <h3>
+                    Cross-platform Sharing
+                </h3>
+
+                <p>
+                    Create once and distribute your content
+                    across the platforms that matter.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    ◇
+                </div>
+
+                <h3>
+                    Smart Analytics
+                </h3>
+
+                <p>
+                    Understand how your content performs
+                    and discover what your audience responds to.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    ✧
+                </div>
+
+                <h3>
+                    AI-powered
+                </h3>
+
+                <p>
+                    Let intelligent systems assist with
+                    content, communication and digital workflows.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    +
+                </div>
+
+                <h3>
+                    Built Around You
+                </h3>
+
+                <p>
+                    Your experience evolves with your interests,
+                    communities and digital activity.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     AI SECTION
+========================= -->
+
+<section id="ai" class="ai-section">
+
+    <div class="container ai-container">
+
+        <div class="ai-copy">
+
+            <div class="eyebrow">
+                Intelligence layer
+            </div>
+
+            <h2>
+                Your AI,
+                working in the background.
+            </h2>
+
+            <p>
+                TheWovenApp uses intelligent systems to help
+                you understand your audience, create better
+                content and manage your digital interactions.
+            </p>
+
+            <div class="ai-list">
+
+                <div class="ai-item">
+                    <div class="check">✓</div>
+                    AI content generation
+                </div>
+
+                <div class="ai-item">
+                    <div class="check">✓</div>
+                    Intelligent content calendars
+                </div>
+
+                <div class="ai-item">
+                    <div class="check">✓</div>
+                    Cross-platform management
+                </div>
+
+                <div class="ai-item">
+                    <div class="check">✓</div>
+                    Smart conversation management
+                </div>
+
+                <div class="ai-item">
+                    <div class="check">✓</div>
+                    Trend-aware recommendations
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="ai-dashboard">
+
+            <div class="dashboard-top">
+
+                <div class="dashboard-title">
+                    Content Intelligence
+                </div>
+
+                <div class="dashboard-status">
+                    ● AI Active
+                </div>
+
+            </div>
+
+
+            <div class="chart">
+
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+
+            </div>
+
+
+            <div class="analytics-card">
+                <span>Content engagement</span>
+                <strong>+42%</strong>
+            </div>
+
+            <div class="analytics-card">
+                <span>Audience growth</span>
+                <strong>+28%</strong>
+            </div>
+
+            <div class="analytics-card">
+                <span>Messages organized</span>
+                <strong>1,284</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     HOW IT WORKS
+========================= -->
+
+<section id="how">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="eyebrow">
+                Simple by design
+            </div>
+
+            <h2>
+                Get woven in.
+                Stay connected.
+            </h2>
+
+        </div>
+
+
+        <div class="steps">
+
+            <div class="step">
+
+                <div class="step-number">
+                    01 — CONNECT
+                </div>
+
+                <h3>
+                    Bring your world together.
+                </h3>
+
+                <p>
+                    Connect your social experiences and
+                    create your personal digital ecosystem.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    02 — CREATE
+                </div>
+
+                <h3>
+                    Create without the friction.
+                </h3>
+
+                <p>
+                    Use intelligent tools to create,
+                    organize and distribute content.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    03 — GROW
+                </div>
+
+                <h3>
+                    Let your network evolve.
+                </h3>
+
+                <p>
+                    Discover communities, understand
+                    your audience and build meaningful
+                    digital relationships.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CTA
+========================= -->
+
+<section id="join" class="cta">
+
+    <div class="container">
+
+        <div class="cta-box">
+
+            <div class="eyebrow">
+                TheWovenApp
+            </div>
+
+            <h2>
+                The internet is connected.
+                Now your experience can be too.
+            </h2>
+
+            <p>
+                Join TheWovenApp and experience a smarter,
+                more connected way to create, communicate
+                and build your digital world.
+            </p>
+
+            <a href="#" class="btn btn-primary">
+                Get Started →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer id="about">
+
+    <div class="container footer-inner">
+
+        <div class="logo">
+            <div class="logo-mark">W</div>
+            TheWovenApp
+        </div>
+
+        <div class="footer-links">
+
+            <a href="#">
+                Privacy
+            </a>
+
+            <a href="#">
+                Terms
+            </a>
+
+            <a href="#">
+                Contact
+            </a>
+
+            <a href="#">
+                Instagram
+            </a>
+
+        </div>
+
+        <div>
+            © 2026 TheWovenApp
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+    /* Smooth reveal animation */
+
+    const observer = new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform =
+                        "translateY(0)";
+
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.1
+        }
+    );
+
+
+    document
+        .querySelectorAll(
+            ".feature, .step, .ai-copy, .ai-dashboard"
+        )
+        .forEach(element => {
+
+            element.style.opacity = "0";
+
+            element.style.transform =
+                "translateY(30px)";
+
+            element.style.transition =
+                "all .7s ease";
+
+            observer.observe(element);
+
+        });
+
+</script>
+
+</body>
+</html>
